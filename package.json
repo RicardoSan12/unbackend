@@ -1,0 +1,19 @@
+{
+  "name": "retornotest",
+  "version": "1.0.0",
+  "description": "Terminando de aprender express",
+  "main": "servidor.js",
+  "scripts": {
+    "start": "node servidor.js",
+    "dev": "nodemon servidor.js"
+  },
+  "author": "Ricardo Sanchez",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}

@@ -1,0 +1,24 @@
+// obtiene todas las notas
+GET http://localhost:3001/api/notes
+
+###
+//obtiene un solo recurso con una ruta dinamica
+GET http://localhost:3001/api/notes/5
+
+###
+// eliminando un solo recurso
+DELETE http://localhost:3001/api/notes/2
+
+###
+// Creando una nota
+POST http://localhost:3001/api/notes
+Content-Type: application/json
+
+{
+    "content" : "los datos si llegaron a la consola",
+    "important" : true
+}
+
+
+###
+GET http://localhost:3001/fdsfdsfs
