@@ -3,11 +3,8 @@ GET http://localhost:3001/api/notes
 
 ###
 //obtiene un solo recurso con una ruta dinamica
-GET http://localhost:3001/api/notes/5
+GET http://localhost:3001/api/notes/4
 
-###
-// eliminando un solo recurso
-DELETE http://localhost:3001/api/notes/2
 
 ###
 // Creando una nota
@@ -15,7 +12,21 @@ POST http://localhost:3001/api/notes
 Content-Type: application/json
 
 {
-    "content" : "los datos si llegaron a la consola",
+    "content" : "Una nueva nota para probar",
+    "important" : true
+}
+
+###
+// eliminando un solo recurso
+DELETE http://localhost:3001/api/notes/62aff0f61753a3732e3dd751
+
+
+###
+PUT http://localhost:3001/api/notes/62aeab2740b2cef1725617e5
+Content-Type: application/json
+
+{
+    "content" : "Cambiando el contenido de la tercer nota, otra vez cambiando",
     "important" : true
 }
 
