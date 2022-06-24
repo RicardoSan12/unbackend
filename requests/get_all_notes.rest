@@ -3,7 +3,7 @@ GET http://localhost:3001/api/notes
 
 ###
 //obtiene un solo recurso con una ruta dinamica
-GET http://localhost:3001/api/notes/4
+GET http://localhost:3001/api/notes/62b26cca96ea192afcbc8588
 
 
 ###
@@ -22,11 +22,11 @@ DELETE http://localhost:3001/api/notes/62aff0f61753a3732e3dd751
 
 
 ###
-PUT http://localhost:3001/api/notes/62aeab2740b2cef1725617e5
+PUT https://desolate-thicket-50000.herokuapp.com/api/notes/62b26cca96ea192afcbc8588
 Content-Type: application/json
 
 {
-    "content" : "Cambiando el contenido de la tercer nota, otra vez cambiando",
+    "content" : "Una nueva nota ha sido modificada",
     "important" : true
 }
 

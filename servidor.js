@@ -1,10 +1,11 @@
 require('dotenv').config()
 const express = require('express')
+require('./mongo')
 const app = express()
 const Note = require('./models/note')
+const handleErrors = require('./middleware/handleErrors')
 
 const cors = require('cors')
-// const { request } = require('express')
 app.use(cors())
 
 app.use(express.json())
@@ -51,7 +52,7 @@ app.get('/api/notes', (request, response) => {
   })
 })
 
-app.get('/api/notes/:id', (request, response) => {
+app.get('/api/notes/:id', (request, response, next) => {
   const id = request.params.id
   
   Note.findById(id).then(note => {
@@ -62,9 +63,9 @@ app.get('/api/notes/:id', (request, response) => {
     }
     })
     .catch(error => {
-    console.log(error)
-    response.status(500).end()
+      next(error)
     })
+
 })
 
 app.post('/api/notes', (request, response) => { 
@@ -81,15 +82,21 @@ app.post('/api/notes', (request, response) => {
     date: new Date(),
   })
 
-  newNote.save().then(savedNote => {
-    response.status(201).json(savedNote)
-})
+  newNote.save()
+  .then(savedNote => {
+    return savedNote.toJSON()
+  })
+  .then(savedAndFormattedNote => {
+    response.json(savedAndFormattedNote)
+  })
 })
 
-app.delete('/api/notes/:id', (request, response) => {
+app.delete('/api/notes/:id', (request, response, next) => {
   const id = request.params.id
   
-  Note.findByIdAndRemove(id).then( result => response.status(204).end())
+  Note.findByIdAndRemove(id)
+  .then( result => response.status(204).end())
+  .catch(error => next(error))
 
 })
 
@@ -102,11 +109,16 @@ app.put('/api/notes/:id', (request, response) => {
     important: body.important
   }
 
-  Note.findByIdAndUpdate(id, newNoteInfo, {new: true}).then(result => {
+  Note.findByIdAndUpdate(id, newNoteInfo, {new: true})
+  .then(result => {
     response.json(result)
   })
+  .catch(error => next(error))
 
 })
+
+app.use(handleErrors)
+
 
 
 const PORT = process.env.PORT || 3001
