@@ -1,0 +1,2 @@
+// eliminando un solo recurso
+DELETE http://localhost:3001/api/notes/62b676edd408e08487a934c3

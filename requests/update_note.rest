@@ -1,0 +1,7 @@
+PUT http://localhost:3001/api/notes/62b26cca96ea192afcbc8588
+Content-Type: application/json
+
+{
+    "content" : "Una nueva nota ha sido modificada, de nuevo pero con el metodo en un controller y routearlo al index",
+    "important" : true
+}

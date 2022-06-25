@@ -3,32 +3,8 @@ GET http://localhost:3001/api/notes
 
 ###
 //obtiene un solo recurso con una ruta dinamica
-GET http://localhost:3001/api/notes/62b26cca96ea192afcbc8588
+GET http://localhost:3001/api/notes/62b66f39934e1e684e20f7b0
 
-
-###
-// Creando una nota
-POST http://localhost:3001/api/notes
-Content-Type: application/json
-
-{
-    "content" : "Una nueva nota para probar",
-    "important" : true
-}
-
-###
-// eliminando un solo recurso
-DELETE http://localhost:3001/api/notes/62aff0f61753a3732e3dd751
-
-
-###
-PUT https://desolate-thicket-50000.herokuapp.com/api/notes/62b26cca96ea192afcbc8588
-Content-Type: application/json
-
-{
-    "content" : "Una nueva nota ha sido modificada",
-    "important" : true
-}
 
 
 ###

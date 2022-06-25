@@ -2,10 +2,11 @@ require('dotenv').config()
 const express = require('express')
 require('./mongo')
 const app = express()
-const Note = require('./models/note')
-const handleErrors = require('./middleware/handleErrors')
 
 const cors = require('cors')
+const notesRouter = require('./controllers/Notes')
+const usersRouter = require('./controllers/Users')
+
 app.use(cors())
 
 app.use(express.json())
@@ -42,82 +43,11 @@ app.use(express.json())
 //     }
 //   ]
 
-app.get("/", (request, response) => { 
-  response.send("<h1>Respuesta satisfactoria</h1>")
-})
+app.get("/", (request, response) => response.send("<h1>Respuesta satisfactoria</h1>"))
 
-app.get('/api/notes', (request, response) => { 
-  Note.find({}).then(notes => {
-    response.json(notes)
-  })
-})
+app.use('/api/notes', notesRouter)
 
-app.get('/api/notes/:id', (request, response, next) => {
-  const id = request.params.id
-  
-  Note.findById(id).then(note => {
-    if (note) {
-      response.json(note)
-    } else {
-      response.status(404).end()
-    }
-    })
-    .catch(error => {
-      next(error)
-    })
-
-})
-
-app.post('/api/notes', (request, response) => { 
-  const body = request.body
-  if (!body || !body.content){
-    return response.status(400).json({
-      error : "note.content is missing"
-    })
-  }
-
-  const newNote = new Note({
-    content: body.content,
-    important: body.important || false,
-    date: new Date(),
-  })
-
-  newNote.save()
-  .then(savedNote => {
-    return savedNote.toJSON()
-  })
-  .then(savedAndFormattedNote => {
-    response.json(savedAndFormattedNote)
-  })
-})
-
-app.delete('/api/notes/:id', (request, response, next) => {
-  const id = request.params.id
-  
-  Note.findByIdAndRemove(id)
-  .then( result => response.status(204).end())
-  .catch(error => next(error))
-
-})
-
-app.put('/api/notes/:id', (request, response) => {
-  const id = request.params.id
-  const body = request.body
-
-  const newNoteInfo = {
-    content: body.content,
-    important: body.important
-  }
-
-  Note.findByIdAndUpdate(id, newNoteInfo, {new: true})
-  .then(result => {
-    response.json(result)
-  })
-  .catch(error => next(error))
-
-})
-
-app.use(handleErrors)
+// app.use('/api/users', usersRouter)
 
 
 
