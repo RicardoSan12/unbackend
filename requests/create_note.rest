@@ -3,6 +3,7 @@ POST http://localhost:3001/api/notes
 Content-Type: application/json
 
 {
-    "content" : "Creanod una nuta para eliminarla",
-    "important" : true
+    "content" : "Hola buenas tardes perros",
+    "important" : true,
+    "userId" : "62b6838cf590baed8aae196b"
 }

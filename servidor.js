@@ -3,9 +3,10 @@ const express = require('express')
 require('./mongo')
 const app = express()
 
-const cors = require('cors')
 const notesRouter = require('./controllers/Notes')
 const usersRouter = require('./controllers/Users')
+const cors = require('cors')
+
 
 app.use(cors())
 
@@ -47,7 +48,7 @@ app.get("/", (request, response) => response.send("<h1>Respuesta satisfactoria</
 
 app.use('/api/notes', notesRouter)
 
-// app.use('/api/users', usersRouter)
+app.use('/api/users', usersRouter)
 
 
 
