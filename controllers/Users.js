@@ -29,7 +29,7 @@ usersRouter.get('/:id', async (request, response) => {
     const {id} = request.params
 
     try{
-        const user = await User.findById(id)
+        const user = await User.findById(id).populate('notes')
         if(!user) response.status(404).end()
         response.json(user)
     }catch(error){

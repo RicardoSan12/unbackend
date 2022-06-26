@@ -5,7 +5,9 @@ const app = express()
 
 const notesRouter = require('./controllers/Notes')
 const usersRouter = require('./controllers/Users')
+const loginRouter = require('./controllers/Login')
 const cors = require('cors')
+
 
 
 app.use(cors())
@@ -50,7 +52,7 @@ app.use('/api/notes', notesRouter)
 
 app.use('/api/users', usersRouter)
 
-
+app.use('/api/login', loginRouter)
 
 const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {

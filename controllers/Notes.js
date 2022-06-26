@@ -4,7 +4,7 @@ const User = require('../models/User')
 const handleErrors = require('../middleware/handleErrors')
 
 notesRouter.get('/', async (request, response) => { 
-    const notes = await Note.find({})
+    const notes = await Note.find({}).populate('user', { username: 1, name: 1 })
     console.log(notes)
     response.json(notes)
 })
@@ -39,7 +39,7 @@ notesRouter.get('/:id', async (request, response, next) => {
     const {id} = request.params
 
     try{
-        const note = await Note.findById(id)
+        const note = await Note.findById(id).populate('user', { username: 1, name: 1 })
         if(!note) response.status(404).end()
         response.json(note)
     }catch(error){
