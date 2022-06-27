@@ -1,11 +1,12 @@
 // Creando una nota
 POST http://localhost:3001/api/notes
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlJ1YmVuMTAiLCJpZCI6IjYyYjdjZmY0ODRlMzA5YTMxZDQwZTMwNiIsImlhdCI6MTY1NjI5MjI1Mn0.ykEDlgVHySqbiLxzT9ha_15JIT9_QLimTn3CEwD3MBw
 
 {
-    "content" : "Hola buenas tardes perros",
+    "content" : "RESUMEN DE Authorization de la nota: Primero debes iniciar session despues copiar el token y pegarlo junto Authorization: bearer <token>, ahora agregar el contenido, el important y el id del usuario",
     "important" : true,
-    "userId" : "62b6838cf590baed8aae196b"
+    "userId" : "62b7cff484e309a31d40e306"
 }
 
 ###
